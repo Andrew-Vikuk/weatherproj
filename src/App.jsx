@@ -29,7 +29,7 @@ function App() {
           type="text" />
         <h1>{data.name}</h1>
         {data.main ? <h2>{(5/9 * (data.main.temp - 32)).toFixed(2)} °C</h2> : null}
-        {data.main ? <h2>{data.wind.speed} m/s</h2> : null} 
+        {data.main ? <h2>{data.wind.speed} m/h</h2> : null} 
       </div>
     </div>
   );
