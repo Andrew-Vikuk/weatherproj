@@ -6,20 +6,31 @@ function App() {
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=a3dc501f090463d7c22b1396b8dcf784`
-  function callData(){
-  axios.get(url).then((response) => {
-    setData(response.data)
-    console.log(response.data)
-  })}
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${loсation}&units=imperial&appid=a3dc501f090463d7c22b1396b8dcf784`
+  const searchLocation = (event) => {
+    if (event.key === 'Enter') {
+      axios.get(url).then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+      setLocation('')
+    }
+  }
+
 
   return (
     <div className="App">
-    <button onClick={() => callData()}>Click</button>
-     <p>{data.name}</p>
-     <p>{data.main.temp} F</p>
-     <p>{data.wind.speed}/ ms</p>
-     <p>{data.timezone}</p>
+      <div className="main">
+      <input
+          value={loсation}
+          onChange={event => setLocation(event.target.value)}
+          onKeyPress={searchLocation}
+          placeholder='Enter Location'
+          type="text" />
+        <h1>{data.name}</h1>
+        {data.main ? <h2>{(5/9 * (data.main.temp - 32)).toFixed(2)} °C</h2> : null}
+        {data.main ? <h2>{data.wind.speed} m/s</h2> : null} 
+      </div>
     </div>
   );
 }
