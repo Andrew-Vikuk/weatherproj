@@ -47,9 +47,26 @@ console.log(time)
           onKeyPress={searchLocation}
           placeholder='Enter Location'
           type="text" />
-        <h1>{data.name}</h1>
-        {data.main ? <h2>{(5/9 * (data.main.temp - 32)).toFixed(2)} °C</h2> : null}
-        {data.main ? <h2>{data.wind.speed} m/s</h2> : null} 
+          {data.weather ? project(data.weather[0].main) : null}
+          <h2 className="mb-6">{data.name}</h2>
+          {data.main ? <h1>{(5/9 * (data.main.temp - 32)).toFixed(0)} °C</h1> : null}
+
+        {/* MIN & MAX TEMP */}
+
+        <div className="min-max mb-3">
+          {data.weather ? <p>{data.weather[0].main}</p> : null}
+          {data.main ? <p>Min: {(5/9 * (data.main.temp_min - 32)).toFixed(0)} °C &nbsp;&nbsp; Max: {(5/9 * (data.main.temp_max - 32)).toFixed(0)} °C</p>: null}
+        </div>
+
+        {/* INFO DIV */}
+
+        <div className="info flex w-96 justify-between mx-auto bg-slate-400 bg-opacity-30 py-2 px-8 rounded-xl pl-11">
+          {data.main ? <p className="info_pressure info_card">{(data.main.pressure / 100).toFixed(0)} %</p> : null}
+          {data.wind ? <p className="info_speed info_card">{(data.wind.speed).toFixed(0)} m/s</p> : null}
+          {data.main ? <p className="info_humidity info_card">{(data.main.humidity)} %</p> : null}
+
+        </div>
+        
       </div>
     </div>
   );
