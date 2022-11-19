@@ -9,10 +9,7 @@ const PORT = 5000
 async function bootstrap() {
   await mongoose.connect(DB_URL)
   const app = await NestFactory.create(AppModule);
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
+  app.enableCors();
   await app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
 }
 
