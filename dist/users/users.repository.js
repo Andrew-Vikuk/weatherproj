@@ -12,7 +12,7 @@ const Post_1 = require("./Post");
 let UsersRepository = class UsersRepository {
     async findAll() {
         const user = await Post_1.default.find();
-        return JSON.stringify(user);
+        return user;
     }
     async findUser(id) {
         const user = await Post_1.default.findById(id);

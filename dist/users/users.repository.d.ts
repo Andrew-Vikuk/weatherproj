@@ -24,7 +24,15 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 export declare class UsersRepository {
-    findAll(): Promise<string>;
+    findAll(): Promise<(import("mongoose").Document<unknown, any, {
+        type: string;
+        name: string;
+    }> & {
+        type: string;
+        name: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
     findUser(id: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;

@@ -5,7 +5,7 @@ import Post from './Post'
 export class UsersRepository {
   async findAll() {
     const user = await Post.find();
-    return JSON.stringify(user);
+    return user;
   }
 
   async findUser(id) {

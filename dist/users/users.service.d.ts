@@ -27,7 +27,15 @@ import { UsersRepository } from "./users.repository";
 export declare class UsersService {
     private readonly usersRepository;
     constructor(usersRepository: UsersRepository);
-    getPosts(): Promise<string>;
+    getPosts(): Promise<(import("mongoose").Document<unknown, any, {
+        type: string;
+        name: string;
+    }> & {
+        type: string;
+        name: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
     getUser(id: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
