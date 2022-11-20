@@ -81,5 +81,14 @@ input{
 }
 
 
+/* Daily styles */
+
+.daily_icon{
+  height: 5rem;
+  object-fit: cover;
+  transform: scale(1.08);
+  margin-top: -16px;
+}
+
 
 
