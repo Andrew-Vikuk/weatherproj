@@ -38,14 +38,6 @@ function App() {
     }, 1000);
   }
 
-  //find what day is it today react.
-// Source: https://stackoverflow.com/a/54754427 .
-
-
-
-
-
-
   return (
     !loading && (
     <div className="App pt-14">
@@ -81,7 +73,7 @@ function App() {
 
           {/* WEATHER BY DAY BLOCK */}
 
-          <div className="day_forcast flex w-5/12 justify-between py-2 px-2 rounded-xl mx-auto align-middle">
+          <div className="day_forcast flex w-4/12 justify-between py-2 px-2 rounded-xl mx-auto align-middle">
             {data.list ? <Days info={data} day="2"/>: null}
             {data.list ? <Days info={data} day="3"/>: null}
             {data.list ? <Days info={data} day="4"/>: null}
