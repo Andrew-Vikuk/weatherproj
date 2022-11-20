@@ -23,26 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-export declare class UsersRepository {
-    findAll(): Promise<(import("mongoose").Document<unknown, any, {
-        type: string;
-        name: string;
-    }> & {
-        type: string;
-        name: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
-    })[]>;
-    findUser(id: any): Promise<import("mongoose").Document<unknown, any, {
-        type: string;
-        name: string;
-    }> & {
-        type: string;
-        name: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    createUser(body: any): Promise<import("mongoose").Document<unknown, any, {
+import { UsersRepository } from "./users.repository";
+export declare class UsersService {
+    private readonly usersRepository;
+    constructor(usersRepository: UsersRepository);
+    getPosts(): Promise<string>;
+    getUser(id: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {
@@ -51,7 +37,7 @@ export declare class UsersRepository {
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    updateUser(body: any): Promise<import("mongoose").Document<unknown, any, {
+    createPost(body: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {
@@ -60,7 +46,16 @@ export declare class UsersRepository {
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    deleteUser(id: any): Promise<import("mongoose").Document<unknown, any, {
+    updatePost(body: any): Promise<import("mongoose").Document<unknown, any, {
+        type: string;
+        name: string;
+    }> & {
+        type: string;
+        name: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    deletePost(id: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {

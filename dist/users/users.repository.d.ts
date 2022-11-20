@@ -23,20 +23,9 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { UsersRepository } from "./users.repository";
-export declare class UsersService {
-    private readonly usersRepository;
-    constructor(usersRepository: UsersRepository);
-    getPosts(): Promise<(import("mongoose").Document<unknown, any, {
-        type: string;
-        name: string;
-    }> & {
-        type: string;
-        name: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
-    })[]>;
-    getUser(id: any): Promise<import("mongoose").Document<unknown, any, {
+export declare class UsersRepository {
+    findAll(): Promise<string>;
+    findUser(id: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {
@@ -45,7 +34,7 @@ export declare class UsersService {
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    createPost(body: any): Promise<import("mongoose").Document<unknown, any, {
+    createUser(body: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {
@@ -54,7 +43,7 @@ export declare class UsersService {
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    updatePost(body: any): Promise<import("mongoose").Document<unknown, any, {
+    updateUser(body: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {
@@ -63,7 +52,7 @@ export declare class UsersService {
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    deletePost(id: any): Promise<import("mongoose").Document<unknown, any, {
+    deleteUser(id: any): Promise<import("mongoose").Document<unknown, any, {
         type: string;
         name: string;
     }> & {
