@@ -43,7 +43,7 @@ function App() {
     <div className="App pt-14">
       <div className="main">
         <input
-            className="border-2 border-grey-400 rounded-xl px-6 py-2"
+            className="search_input border-2 border-grey-400 rounded-xl px-6 py-2"
             value={loсation}
             onChange={event => setLocation(event.target.value)}
             onKeyPress={searchLocation}
@@ -82,6 +82,12 @@ function App() {
           </div>
           
       </div>
+      <form action="">
+        <input type="text" placeholder="Login" id="login" />
+        <input type="pass" placeholder="Password" id="pass"/>
+        <input type="passconfirm" placeholder="Confirm" id="pass_rep"/>
+        <input type="submit"/>
+      </form>
     </div>
   ));
 }
