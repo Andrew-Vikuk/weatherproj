@@ -30,10 +30,10 @@ function App() {
     }
   }
 
-  const spinner = document.getElementById("spinner");
-  if (spinner) {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
     setTimeout(() => {
-      spinner.style.display = "none";
+      preloader.style.display = "none";
       setLoading(false);
     }, 1000);
   }
@@ -73,7 +73,7 @@ function App() {
 
           {/* WEATHER BY DAY BLOCK */}
 
-          <div className="day_forcast flex w-4/12 justify-between py-2 px-2 rounded-xl mx-auto align-middle">
+          <div className="day_forcast flex max-w-xl justify-between py-2 px-2 rounded-xl mx-auto align-middle">
             {data.list ? <Days info={data} day="2"/>: null}
             {data.list ? <Days info={data} day="3"/>: null}
             {data.list ? <Days info={data} day="4"/>: null}
