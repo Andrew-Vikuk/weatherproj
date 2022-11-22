@@ -8,6 +8,11 @@ function App() {
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
   const urlposts = 'http://localhost:5000/users/posts';
   //const urlcreate = 'http://localhost:5000/users/create';
   const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
@@ -20,7 +25,6 @@ function App() {
       axios.get(urlposts).then((response) => {
         console.log(response.data)
       })
-      console.log(username);
     }
   }
 
@@ -44,17 +48,16 @@ function App() {
     }, 1000);
   }
 
- var username = "Mykola"//document.getElementById('login').val();
- var pass = "123"//document.getElementById('pass').val();
-
- const create = (e) => {
+ const getUserInfo = (e) => {
   e.preventDefault();
-  fetch(`http://localhost:5000/users/${username}/${pass}`,
-{
-    method: "POST"
-})
-.then(function(res){ console.log(res) })
-console.log("hi")
+
+  fetch(`http://localhost:5000/users/${login}/${password}`,
+    {
+        method: "POST"
+    })
+
+    .then(function(res){ console.log(res) })
+    console.log("hi");
 }
   return (
     !loading && (
@@ -100,11 +103,26 @@ console.log("hi")
           </div>
           
       </div>
-      <form action="">
-        <input type="text" placeholder="Login" id="login" />
-        <input type="pass" placeholder="Password" id="pass"/>
+      <form action="" onSubmit={getUserInfo}>
+
+        <input 
+          type="text" 
+          placeholder="Login" 
+          id="login" 
+          onChange={event => setLogin(event.target.value)}
+          value={login}
+        />
+
+        <input 
+          type="pass"
+          placeholder="Password"
+          id="pass"
+          onChange={event => setPassword(event.target.value)}
+          value={password}
+        />
+
         <input type="passconfirm" placeholder="Confirm" id="pass_rep"/>
-        <button onClick={(e)=> create(e)}> Click me!</button>
+        <input type="submit"/>
       </form>
     </div>
   ));
