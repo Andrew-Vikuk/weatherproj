@@ -2,12 +2,14 @@ import React, {useState} from "react";
 import axios from "axios";
 import Days from "./components/Days"
 
+
 function App() {
 
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const urlposts = 'http://localhost:5000/users/posts';
+  //const urlcreate = 'http://localhost:5000/users/create';
   const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
@@ -15,6 +17,10 @@ function App() {
         setData(response.data)
         console.log(response.data)
       })
+      axios.get(urlposts).then((response) => {
+        console.log(response.data)
+      })
+      console.log(username);
     }
   }
 
@@ -38,6 +44,18 @@ function App() {
     }, 1000);
   }
 
+ var username = "Mykola"//document.getElementById('login').val();
+ var pass = "123"//document.getElementById('pass').val();
+
+ const create = (e) => {
+  e.preventDefault();
+  fetch(`http://localhost:5000/users/${username}/${pass}`,
+{
+    method: "POST"
+})
+.then(function(res){ console.log(res) })
+console.log("hi")
+}
   return (
     !loading && (
     <div className="App pt-14">
@@ -86,7 +104,7 @@ function App() {
         <input type="text" placeholder="Login" id="login" />
         <input type="pass" placeholder="Password" id="pass"/>
         <input type="passconfirm" placeholder="Confirm" id="pass_rep"/>
-        <input type="submit"/>
+        <button onClick={(e)=> create(e)}> Click me!</button>
       </form>
     </div>
   ));

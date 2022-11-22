@@ -25,47 +25,57 @@
 /// <reference types="mongoose/types/inferschematype" />
 export declare class UsersRepository {
     findAll(): Promise<(import("mongoose").Document<unknown, any, {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     }> & {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     findUser(id: any): Promise<import("mongoose").Document<unknown, any, {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     }> & {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     createUser(body: any): Promise<import("mongoose").Document<unknown, any, {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     }> & {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     updateUser(body: any): Promise<import("mongoose").Document<unknown, any, {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     }> & {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     deleteUser(id: any): Promise<import("mongoose").Document<unknown, any, {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     }> & {
-        type: string;
         name: string;
+        password: string;
+        type?: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;

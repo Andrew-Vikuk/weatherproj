@@ -2,8 +2,7 @@ import { Controller, Get, Post, Put, Delete, Body, Request } from '@nestjs/commo
 import path from 'path';
 import { UsersService } from "./users.service";
 
-var username = document.getElementById('login');
-var pass = document.getElementById('pass');
+
 class User  {
     name: string;
     password: string;
@@ -12,6 +11,7 @@ class User  {
       this.password = password;
     }
 }
+
 
 @Controller('users')
 export class UsersController {
@@ -30,9 +30,9 @@ export class UsersController {
     return { status: true, result };
   }
 
-  @Post('create')
-  async createClient(@Body() body): Promise<{ status: boolean, result: any}> {
-    const result = await this.usersService.createPost(body);
+  @Post(':name/:password')
+  async createClient(@Request() req): Promise<{ status: boolean, result: any}> {
+    const result = await this.usersService.createPost(req);
     return { status: true, result };
   }
 

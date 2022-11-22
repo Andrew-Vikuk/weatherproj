@@ -14,7 +14,7 @@ export class UsersRepository {
   }
 
   async createUser(body) {
-    const user = await Post.create(body);
+    const user = await Post.create({name: body.params.name, password: body.params.password});
     return user;
   }
 

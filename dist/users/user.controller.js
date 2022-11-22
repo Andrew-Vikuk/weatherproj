@@ -15,6 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
+class User {
+    constructor(name, password) {
+        this.name = name;
+        this.password = password;
+    }
+}
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -27,8 +33,8 @@ let UsersController = class UsersController {
         const result = await this.usersService.getUser(req.params.id);
         return { status: true, result };
     }
-    async createClient(body) {
-        const result = await this.usersService.createPost(body);
+    async createClient(req) {
+        const result = await this.usersService.createPost(req);
         return { status: true, result };
     }
     async updateClient(body) {
@@ -54,8 +60,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getClient", null);
 __decorate([
-    (0, common_1.Post)('create'),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Post)(':name/:password'),
+    __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)

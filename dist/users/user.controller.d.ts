@@ -10,7 +10,7 @@ export declare class UsersController {
         status: boolean;
         result: any;
     }>;
-    createClient(body: any): Promise<{
+    createClient(req: any): Promise<{
         status: boolean;
         result: any;
     }>;

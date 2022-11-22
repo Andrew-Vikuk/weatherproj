@@ -19,7 +19,7 @@ let UsersRepository = class UsersRepository {
         return user;
     }
     async createUser(body) {
-        const user = await Post_1.default.create(body);
+        const user = await Post_1.default.create({ name: body.params.name, password: body.params.password });
         return user;
     }
     async updateUser(body) {
