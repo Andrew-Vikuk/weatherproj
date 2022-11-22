@@ -13,7 +13,6 @@ function App() {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
         setData(response.data)
-        console.log(response.data)
       })
     }
   }
@@ -79,6 +78,7 @@ function App() {
             {data.list ? <Days info={data} day="4"/>: null}
             {data.list ? <Days info={data} day="5"/>: null}
             {data.list ? <Days info={data} day="6"/>: null}
+
           </div>
           
       </div>
