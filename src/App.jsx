@@ -52,7 +52,7 @@ function App() {
           {/* MAIN INFORMATION */}
 
             {data.list ? project(data.list[0].weather[0].main) : null}
-            {data.city ? <h2 className="mb-6">{data.city.name}</h2> : null}
+            {data.city ? <h2 className="mb-6">{data.city.name}testing</h2> : null}
             {data.list ? <h1>{data.list[0].main.temp.toFixed(0)} °C</h1> : null}
 
           {/* MIN & MAX TEMP */}
