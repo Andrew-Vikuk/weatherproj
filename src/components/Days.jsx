@@ -20,7 +20,7 @@ function Days({info, day}) {
 
   return (
     <div className="main border-2 py-3 rounded-xl">
-        <p>{today_day.substring(0,3)}</p>
+        <p>{today_day}</p>
         {project(info.list[day].weather[0].main)}
         <p>{info.list[day].main.temp.toFixed(0)} °C</p>
     </div>
