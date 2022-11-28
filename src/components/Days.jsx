@@ -15,7 +15,7 @@ function Days({info, day}) {
       }
 
     var now = new Date();
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var today_day = days[ now.getDay() + parseInt(day) - 1 ];
 
   return (
