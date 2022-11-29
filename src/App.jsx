@@ -7,15 +7,19 @@ function App() {
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
+  const [today, setToday] = useState("");
 
   const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
         setData(response.data)
+        console.log(response.data);
+        setToday(response.data.list[0].dt_txt.slice(8,10));
       })
     }
   }
+
 
   const project = (a) => {
     switch(a) {
@@ -37,10 +41,17 @@ function App() {
     }, 1000);
   }
 
+
+
+
+  // Cut date str to find day. Then check if day number is bigger than today's day push it to arr and show below.
+
+
   return (
     !loading && (
     <div className="App pt-14">
       <div className="main">
+        <span>{today}</span>
         <input
             className="border-2 border-grey-400 rounded-xl px-6 py-2"
             value={loсation}
@@ -52,7 +63,7 @@ function App() {
           {/* MAIN INFORMATION */}
 
             {data.list ? project(data.list[0].weather[0].main) : null}
-            {data.city ? <h2 className="mb-6">{data.city.name}testing</h2> : null}
+            {data.city ? <h2 className="mb-6">{data.city.name}</h2> : null}
             {data.list ? <h1>{data.list[0].main.temp.toFixed(0)} °C</h1> : null}
 
           {/* MIN & MAX TEMP */}

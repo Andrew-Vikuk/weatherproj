@@ -21,6 +21,7 @@ function Days({info, day}) {
   return (
     <div className="main border-2 py-3 rounded-xl">
         <p>{today_day}</p>
+        <p>{info.list[0].dt_txt.slice(8,10)}</p>
         {project(info.list[day].weather[0].main)}
         <p>{info.list[day].main.temp.toFixed(0)} °C</p>
     </div>
