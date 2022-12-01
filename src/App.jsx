@@ -22,13 +22,14 @@ function App() {
         response.data.list.forEach(element => {
           if(response.data.list[0].dt_txt.slice(8,10) === element.dt_txt.slice(8,10)){
           setListDays(current => [...current, element.dt_txt.slice(8,10)])
-          console.log(element.dt_txt.slice(8,10));}
+          console.log(element.dt_txt.slice(8,10));
+        }
         });
+        
       })
     }
   }
 
-  console.log(listDays.length);
 
   const project = (a) => {
     switch(a) {
