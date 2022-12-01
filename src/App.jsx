@@ -7,7 +7,8 @@ function App() {
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
-  const [today, setToday] = useState("");
+  const [listDays, setListDays] = useState([]);
+
 
   const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
   const searchLocation = (event) => {
@@ -15,11 +16,22 @@ function App() {
       axios.get(url).then((response) => {
         setData(response.data)
         console.log(response.data);
-        setToday(response.data.list[0].dt_txt.slice(8,10));
+
+        response.data.list.forEach(element => {
+          if(response.data.list[0].dt_txt.slice(8,10) === element.dt_txt.slice(8,10)){
+          setListDays(current => [...current, element.dt_txt.slice(8,10)])
+          console.log(element.dt_txt.slice(8,10));}
+        });
+
+        // var day_time = response.data.list[0].dt;
+        // var date = new Date(day_time * 1000);
+        // console.log(date.getHours());
+        // setToday(response.data.list[0].dt_txt.slice(8,10));
       })
     }
   }
 
+  console.log(listDays.length);
 
   const project = (a) => {
     switch(a) {
@@ -42,16 +54,16 @@ function App() {
   }
 
 
-
+  
 
   // Cut date str to find day. Then check if day number is bigger than today's day push it to arr and show below.
+
 
 
   return (
     !loading && (
     <div className="App pt-14">
       <div className="main">
-        <span>{today}</span>
         <input
             className="border-2 border-grey-400 rounded-xl px-6 py-2"
             value={loсation}
