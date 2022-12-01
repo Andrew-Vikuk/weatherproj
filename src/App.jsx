@@ -17,16 +17,13 @@ function App() {
         setData(response.data)
         console.log(response.data);
 
+        // GET NUMBER OF TODAYS DAY FORECAST HOURS
+
         response.data.list.forEach(element => {
           if(response.data.list[0].dt_txt.slice(8,10) === element.dt_txt.slice(8,10)){
           setListDays(current => [...current, element.dt_txt.slice(8,10)])
           console.log(element.dt_txt.slice(8,10));}
         });
-
-        // var day_time = response.data.list[0].dt;
-        // var date = new Date(day_time * 1000);
-        // console.log(date.getHours());
-        // setToday(response.data.list[0].dt_txt.slice(8,10));
       })
     }
   }
@@ -96,12 +93,10 @@ function App() {
           {/* WEATHER BY DAY BLOCK */}
 
           <div className="day_forcast flex max-w-xl justify-between py-2 px-2 rounded-xl mx-auto align-middle">
-            {data.list ? <Days info={data} day="2"/>: null}
-            {data.list ? <Days info={data} day="3"/>: null}
-            {data.list ? <Days info={data} day="4"/>: null}
-            {data.list ? <Days info={data} day="5"/>: null}
-            {data.list ? <Days info={data} day="6"/>: null}
-
+            {listDays.map((item, index)=>{
+              return data.list ? <Days info={data} day={index}/>: null
+            })}
+          
           </div>
           
       </div>
