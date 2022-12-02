@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
-import Days from "./components/Days"
+import HourlyForecast from "./components/HourlyForecast"
+import SECRET from "./SECRET"
+
 
 function App() {
 
@@ -10,7 +12,8 @@ function App() {
   const [listDays, setListDays] = useState([]);
 
 
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
+
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=${SECRET.API_KEY}`
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
@@ -22,13 +25,14 @@ function App() {
         response.data.list.forEach(element => {
           if(response.data.list[0].dt_txt.slice(8,10) === element.dt_txt.slice(8,10)){
           setListDays(current => [...current, element.dt_txt.slice(8,10)])
-          console.log(element.dt_txt.slice(8,10));
         }
         });
-        
       })
+    setLocation("");
+    setListDays([]);
     }
   }
+
 
 
   const project = (a) => {
@@ -95,7 +99,7 @@ function App() {
 
           <div className="day_forcast flex max-w-xl justify-between py-2 px-2 rounded-xl mx-auto align-middle">
             {listDays.map((item, index)=>{
-              return data.list ? <Days info={data} day={index}/>: null
+              return data.list ? <HourlyForecast info={data} day={index}/>: null
             })}
           
           </div>
