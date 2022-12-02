@@ -24,3 +24,4 @@ yarn-error.log*
 
 # API KEYS
 .env
+SECRET.jsx
