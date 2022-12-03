@@ -1,8 +1,11 @@
 import React from 'react'
 
-function Days({info, dayNum}) {
+function Days({info, dayNum, dayName}) {
 
   const weatherIcon = (a) => {
+    
+    // WEATHER ICONS CASES
+    
     switch(a) {
 
       case "Clouds": return <img src={require("../images/cloudy.png")} alt="" className="daily_icon"/>;
@@ -14,15 +17,15 @@ function Days({info, dayNum}) {
     }
   }
 
-    
+    // SET DAY FOR EACH BLOCK 
+
     var now = new Date();
-    console.log(now.getDay());
+    var todaysDay = now.getDay();
     var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    // var today_day = days[ now.getDay() + parseInt(day) - 1 ];
 
   return (
     <div className='days_main border-b-2 flex justify-around py-3'>
-      <h5 className='text-xl'>Today</h5>
+      <h5 className='text-xl'>{days[todaysDay + dayName + 1]}</h5>
         {weatherIcon(info.list[dayNum].weather[0].main)}
         <span className="text-xl">{info.list[dayNum].main.temp.toFixed(0)} °C</span>
     </div>

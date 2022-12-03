@@ -7,23 +7,23 @@ import Days from "./components/Days";
 
 function App() {
 
+  // ALL USE STATES
+
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
   const [listDays, setListDays] = useState([]);
 
+  // API CONNECT & AXIOS RESPONSE
 
-  const forecastLength = 40;
-
-
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=${forecastLength}&units=metric&appid=${SECRET.API_KEY}`
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=${SECRET.FORECAST_LENGTH}&units=metric&appid=${SECRET.API_KEY}`
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
         setData(response.data)
         console.log(response.data);
 
-        // GET NUMBER OF TODAYS DAY FORECAST HOURS
+        // Get number of todays day
 
         response.data.list.forEach(element => {
           if(response.data.list[0].dt_txt.slice(8,10) === element.dt_txt.slice(8,10)){
@@ -36,6 +36,8 @@ function App() {
     }
   }
 
+  // WEATHER BY DAYS FUNCTION
+
   function mapInDays(array){
     const resultArr = [];
     for(var i = array.length + 1; i < 40; i += 8){
@@ -44,7 +46,7 @@ function App() {
     return resultArr;
   }
 
-
+  // WEATHER ICONS CASES
 
   const weatherIcon = (a) => {
     switch(a) {
@@ -57,6 +59,8 @@ function App() {
       default: return <h1>404</h1>
     }
   }
+
+  // PRELOADER
 
   const preloader = document.getElementById("preloader");
   if (preloader) {
@@ -71,6 +75,9 @@ function App() {
     !loading && (
     <div className="App pt-14">
       <div className="main">
+
+        {/* SEARCHING LOCATION */}
+
         <input
             className="border-2 border-grey-400 rounded-xl px-6 py-2"
             value={loсation}
@@ -111,8 +118,8 @@ function App() {
           <div className="daily_weather flex flex-col max-w-xl justify-between m-auto">
             
             <h4>5 Day Forecast</h4>
-            {mapInDays(listDays).map((dayNumber) => {
-              return data.list ? <Days info={data} dayNum={dayNumber}/> : null
+            {mapInDays(listDays).map((dayNumber, index) => {
+              return data.list ? <Days info={data} dayNum={dayNumber} dayName={index}/> : null
             })}
           </div>
           

@@ -3,6 +3,9 @@ import React from 'react'
 function HourlyForecast({info, day}) {
 
     const weatherIcon = (a) => {
+
+        // WEATHER ICON CASES
+
         switch(a) {
     
           case "Clouds": return <img src={require("../images/cloudy.png")} alt="" className="hourly_icon"/>;
