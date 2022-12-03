@@ -17,6 +17,7 @@ body{
   background: linear-gradient(167.44deg, #621de2 0%, #7a3dca 47.38%, #8b41d1 100%);
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
   height: 100%;
   color: white;
   padding: 10px 0 60px 0;
@@ -84,11 +85,17 @@ input{
 
 /* Daily styles */
 
-.daily_icon{
+.hourly_icon{
   height: 5rem;
   object-fit: cover;
   transform: scale(1.08);
   margin-top: -16px;
+}
+
+.daily_icon{
+  height: 3.3rem;
+  object-fit: cover;
+  margin-top: -10px;
 }
 
 

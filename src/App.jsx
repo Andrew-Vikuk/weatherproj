@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import HourlyForecast from "./components/HourlyForecast"
 import SECRET from "./SECRET"
+import Days from "./components/Days";
 
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
   const [listDays, setListDays] = useState([]);
 
 
+  const forecastLength = 40;
 
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=${SECRET.API_KEY}`
+
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=${forecastLength}&units=metric&appid=${SECRET.API_KEY}`
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
@@ -33,9 +36,17 @@ function App() {
     }
   }
 
+  function mapInDays(array){
+    const resultArr = [];
+    for(var i = array.length + 1; i < 40; i += 8){
+      resultArr.push(i);
+    }
+    return resultArr;
+  }
 
 
-  const project = (a) => {
+
+  const weatherIcon = (a) => {
     switch(a) {
 
       case "Clouds": return <img src={require("./images/cloudy.png")} alt="" className="h-52 mx-auto"/>;
@@ -56,12 +67,6 @@ function App() {
   }
 
 
-  
-
-  // Cut date str to find day. Then check if day number is bigger than today's day push it to arr and show below.
-
-
-
   return (
     !loading && (
     <div className="App pt-14">
@@ -76,7 +81,7 @@ function App() {
 
           {/* MAIN INFORMATION */}
 
-            {data.list ? project(data.list[0].weather[0].main) : null}
+            {data.list ? weatherIcon(data.list[0].weather[0].main) : null}
             {data.city ? <h2 className="mb-6">{data.city.name}</h2> : null}
             {data.list ? <h1>{data.list[0].main.temp.toFixed(0)} °C</h1> : null}
 
@@ -95,13 +100,20 @@ function App() {
             {data.list ? <p className="info_humidity info_card">{(data.list[0].main.humidity)} %</p> : null}
           </div>
 
-          {/* WEATHER BY DAY BLOCK */}
+          {/* WEATHER FORECAST BY DAY BLOCK */}
 
           <div className="day_forcast flex max-w-xl justify-between py-2 px-2 rounded-xl mx-auto align-middle">
             {listDays.map((item, index)=>{
               return data.list ? <HourlyForecast info={data} day={index}/>: null
             })}
-          
+          </div>
+            {/* 8 */}
+          <div className="daily_weather flex flex-col max-w-xl justify-between m-auto">
+            
+            <h4>5 Day Forecast</h4>
+            {mapInDays(listDays).map((dayNumber) => {
+              return data.list ? <Days info={data} dayNum={dayNumber}/> : null
+            })}
           </div>
           
       </div>
