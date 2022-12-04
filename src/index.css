@@ -93,6 +93,7 @@ input{
 }
 
 .daily_icon{
+  width: 40px;
   height: 3.3rem;
   object-fit: cover;
   margin-top: -10px;
