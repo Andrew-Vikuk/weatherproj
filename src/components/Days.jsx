@@ -24,8 +24,8 @@ function Days({info, dayNum, dayName}) {
     var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
   return (
-    <div className='days_main border-b-2 flex justify-around py-3'>
-      <h5 className='text-xl'>{days[todaysDay + dayName + 1]}</h5>
+    <div className='days_main border-b-2 flex justify-around py-3 first:border-t-2'>
+      <h5 className='day_of_week text-xl w-10'>{days[todaysDay + dayName + 1]}</h5>
         {weatherIcon(info.list[dayNum].weather[0].main)}
         <span className="text-xl">{info.list[dayNum].main.temp.toFixed(0)} °C</span>
     </div>
