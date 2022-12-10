@@ -99,5 +99,14 @@ input{
   margin-top: -10px;
 }
 
+/* RESPONSIVE PART */
+
+@media screen and (max-width: 600px) {
+  .day_forcast {
+    overflow: scroll;
+    width: 400px!important;
+  }
+}
+
 
 
