@@ -1,30 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { UsersRepository } from "./users.repository";
-
+import Post from './Post'
 
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) {
-  }
-
   async getPosts() {
-    return this.usersRepository.findAll();
+    const user = await Post.find();
+    return user;
   }
 
   async getUser(id) {
-    return this.usersRepository.findUser(id);
+    const user = await Post.findById(id);
+    return user;
   }
 
   async createPost(body) {
-    return this.usersRepository.createUser(body);
+    const user = await Post.create({name: body.params.name, password: body.params.password});
+    return user;
   }
 
   async updatePost(body) {
-    return this.usersRepository.updateUser(body);
+    const user = await Post.findByIdAndUpdate(body._id, body, {new: true});
+    return user;
   }
 
   async deletePost(id) {
-    return this.usersRepository.deleteUser(id);
+    const user = await Post.findByIdAndDelete(id);
+    return user;
   }
 }
