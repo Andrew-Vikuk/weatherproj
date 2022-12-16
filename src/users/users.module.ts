@@ -1,18 +1,17 @@
-import { Module, NestModule, MiddlewareConsumer, RequestMethod } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { UsersController } from './user.controller';
 import { UsersService } from './users.service';
 import { UsersRepository } from "./users.repository";
+import {AuthModule} from "../auth/auth.module";
 
 @Module({
-    controllers: [UsersController],
-    providers: [UsersService, UsersRepository]
-  })
-  
-  export class UsersModule implements NestModule {
-    configure(consumer: MiddlewareConsumer): any {
-      consumer.apply().forRoutes({
-        path: 'users/admins',
-        method: RequestMethod.GET
-      })
-    }
-  }
+  controllers: [UsersController],
+  providers: [UsersService],
+  imports: [
+      forwardRef(() => AuthModule),
+  ],
+    exports: [
+        UsersService,
+    ]
+})
+export class UsersModule {}

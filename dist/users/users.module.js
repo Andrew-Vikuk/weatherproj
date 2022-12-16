@@ -10,19 +10,19 @@ exports.UsersModule = void 0;
 const common_1 = require("@nestjs/common");
 const user_controller_1 = require("./user.controller");
 const users_service_1 = require("./users.service");
-const users_repository_1 = require("./users.repository");
+const auth_module_1 = require("../auth/auth.module");
 let UsersModule = class UsersModule {
-    configure(consumer) {
-        consumer.apply().forRoutes({
-            path: 'users/admins',
-            method: common_1.RequestMethod.GET
-        });
-    }
 };
 UsersModule = __decorate([
     (0, common_1.Module)({
         controllers: [user_controller_1.UsersController],
-        providers: [users_service_1.UsersService, users_repository_1.UsersRepository]
+        providers: [users_service_1.UsersService],
+        imports: [
+            (0, common_1.forwardRef)(() => auth_module_1.AuthModule),
+        ],
+        exports: [
+            users_service_1.UsersService,
+        ]
     })
 ], UsersModule);
 exports.UsersModule = UsersModule;

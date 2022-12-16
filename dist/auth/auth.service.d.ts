@@ -23,52 +23,22 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-export declare class UsersService {
-    getPosts(): Promise<(import("mongoose").Document<unknown, any, {
-        name: string;
-        password: string;
-        type?: string;
-    }> & {
-        name: string;
-        password: string;
-        type?: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
-    })[]>;
-    getUser(id: any): Promise<import("mongoose").Document<unknown, any, {
-        name: string;
-        password: string;
-        type?: string;
-    }> & {
-        name: string;
-        password: string;
-        type?: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
+import { UsersService } from 'src/users/users.service';
+import { JwtService } from "@nestjs/jwt";
+export declare class AuthService {
+    private userService;
+    private jwtService;
+    constructor(userService: UsersService, jwtService: JwtService);
+    login(body: any): Promise<{
+        token: string;
     }>;
-    createPost(body: any): Promise<import("mongoose").Document<unknown, any, {
-        name: string;
-        password: string;
-        type?: string;
-    }> & {
-        name: string;
-        password: string;
-        type?: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
+    registration(body: any): Promise<{
+        token: string;
     }>;
-    updatePost(body: any): Promise<import("mongoose").Document<unknown, any, {
-        name: string;
-        password: string;
-        type?: string;
-    }> & {
-        name: string;
-        password: string;
-        type?: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
+    generateToken(user: any): Promise<{
+        token: string;
     }>;
-    deletePost(id: any): Promise<import("mongoose").Document<unknown, any, {
+    validateUser(body: any): Promise<import("mongoose").Document<unknown, any, {
         name: string;
         password: string;
         type?: string;

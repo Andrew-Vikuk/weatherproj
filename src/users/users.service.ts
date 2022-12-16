@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import Post from './Post'
-
+import * as bcrypt from 'bcryptjs'
 
 @Injectable()
 export class UsersService {
@@ -15,7 +15,8 @@ export class UsersService {
   }
 
   async createPost(body) {
-    const user = await Post.create({name: body.params.name, password: body.params.password});
+    const hashPassword = await bcrypt.hash(body.params.password, 5);
+    const user = await Post.create({name: body.params.name, password: hashPassword});
     return user;
   }
 

@@ -5,36 +5,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const users_repository_1 = require("./users.repository");
+const Post_1 = require("./Post");
+const bcrypt = require("bcryptjs");
 let UsersService = class UsersService {
-    constructor(usersRepository) {
-        this.usersRepository = usersRepository;
-    }
     async getPosts() {
-        return this.usersRepository.findAll();
+        const user = await Post_1.default.find();
+        return user;
     }
     async getUser(id) {
-        return this.usersRepository.findUser(id);
+        const user = await Post_1.default.findById(id);
+        return user;
     }
     async createPost(body) {
-        return this.usersRepository.createUser(body);
+        const hashPassword = await bcrypt.hash(body.params.password, 5);
+        const user = await Post_1.default.create({ name: body.params.name, password: hashPassword });
+        return user;
     }
     async updatePost(body) {
-        return this.usersRepository.updateUser(body);
+        const user = await Post_1.default.findByIdAndUpdate(body._id, body, { new: true });
+        return user;
     }
     async deletePost(id) {
-        return this.usersRepository.deleteUser(id);
+        const user = await Post_1.default.findByIdAndDelete(id);
+        return user;
     }
 };
 UsersService = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [users_repository_1.UsersRepository])
+    (0, common_1.Injectable)()
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map
