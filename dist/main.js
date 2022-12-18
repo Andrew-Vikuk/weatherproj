@@ -4,14 +4,15 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const mongoose_1 = require("mongoose");
 require('dotenv').config();
-const db2 = process.env.DBURL;
-const DB = 'mongodb+srv://WeatherUser:gordon123@weather.geysrty.mongodb.net/Users?retryWrites=true&w=majority';
-const PORT = 5000;
+const db = process.env.DB_URL;
+const port = process.env.PORT;
 async function bootstrap() {
-    await mongoose_1.default.connect(DB);
+    console.log(process.env.DB_URL);
+    console.log(process.env.TEXT);
+    await mongoose_1.default.connect(db);
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
-    await app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+    await app.listen(port, () => console.log('SERVER STARTED ON PORT ' + port));
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

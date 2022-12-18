@@ -36,6 +36,6 @@ export class AuthService {
         if (user && passwordEquals) {
             return user;
         }
-        throw new Error( `${body.params.password}`)
+        throw new Error('Incorrect username or password')
     }
 }

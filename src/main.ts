@@ -3,15 +3,13 @@ import { AppModule } from './app.module';
 import mongoose from 'mongoose'
 require('dotenv').config();
 
-const db2 = process.env.DBURL;
-const DB = 'mongodb+srv://WeatherUser:gordon123@weather.geysrty.mongodb.net/Users?retryWrites=true&w=majority'
-const PORT = 5000
+const db = process.env.DB_URL
+const port = process.env.PORT
 async function bootstrap() {
-  //console.log(process.env.DBURL);
-  await mongoose.connect(DB)
+  await mongoose.connect(db)
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  await app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+  await app.listen(port, () => console.log('SERVER STARTED ON PORT ' + port));
 }
 
 bootstrap();
