@@ -7,8 +7,6 @@ require('dotenv').config();
 const db = process.env.DB_URL;
 const port = process.env.PORT;
 async function bootstrap() {
-    console.log(process.env.DB_URL);
-    console.log(process.env.TEXT);
     await mongoose_1.default.connect(db);
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
