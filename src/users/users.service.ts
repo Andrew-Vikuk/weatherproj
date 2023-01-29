@@ -15,8 +15,8 @@ export class UsersService {
   }
 
   async createPost(body) {
-    const hashPassword = await bcrypt.hash(body.params.password, 5);
-    const user = await Post.create({name: body.params.name, password: hashPassword});
+    const hashPassword = await bcrypt.hash(body.password, 5);
+    const user = await Post.create({name: body.name, password: hashPassword});
     return user;
   }
 

@@ -20,8 +20,8 @@ let UsersService = class UsersService {
         return user;
     }
     async createPost(body) {
-        const hashPassword = await bcrypt.hash(body.params.password, 5);
-        const user = await Post_1.default.create({ name: body.params.name, password: hashPassword });
+        const hashPassword = await bcrypt.hash(body.password, 5);
+        const user = await Post_1.default.create({ name: body.name, password: hashPassword });
         return user;
     }
     async updatePost(body) {

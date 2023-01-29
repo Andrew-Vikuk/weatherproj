@@ -19,25 +19,25 @@ let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async login(req) {
-        const result = await this.authService.login(req);
+    async login(body) {
+        const result = await this.authService.login(body);
         return { status: true, result };
     }
-    async registration(req) {
-        const result = await this.authService.registration(req);
+    async registration(body) {
+        const result = await this.authService.registration(body);
         return { status: true, result };
     }
 };
 __decorate([
-    (0, common_1.Post)('/login/:name/:password'),
-    __param(0, (0, common_1.Request)()),
+    (0, common_1.Post)('/login'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([
-    (0, common_1.Post)('/registration/:name/:password'),
-    __param(0, (0, common_1.Request)()),
+    (0, common_1.Post)('/registration'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)

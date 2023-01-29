@@ -51,13 +51,17 @@ function App() {
  const getUserInfo = (e) => {
   e.preventDefault();
 
-  fetch(`http://localhost:5000/users/${login}/${password}`,
-    {
-        method: "POST"
-    })
+  // fetch(`http://localhost:5000/users/${login}/${password}`,
+  //   {
+  //       method: "POST"
+  //   })
 
-    .then(function(res){ console.log(res) })
-    console.log("hi");
+  //   .then(function(res){ console.log(res) })
+  const answer =  axios.post(`http://localhost:5000/auth/registration`,{
+          name: login,
+          password: password
+        });
+    console.log(`${answer}`);
 }
   return (
     !loading && (

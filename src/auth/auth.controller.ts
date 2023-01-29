@@ -5,15 +5,15 @@ import { AuthService } from './auth.service';
 export class AuthController {
     constructor(private authService: AuthService){}
 
-    @Post('/login/:name/:password')
-    async login(@Request() req): Promise<{ status: boolean, result: any}> {
-        const result = await this.authService.login(req)
+    @Post('/login')
+    async login(@Body() body): Promise<{ status: boolean, result: any}> {
+        const result = await this.authService.login(body)
         return { status: true, result };
     }
 
-    @Post('/registration/:name/:password')
-    async registration(@Request() req): Promise<{ status: boolean, result: any}> {
-        const result = await this.authService.registration(req)
+    @Post('/registration')
+    async registration(@Body() body): Promise<{ status: boolean, result: any}> {
+        const result = await this.authService.registration(body)
         return { status: true, result };
     }
 }

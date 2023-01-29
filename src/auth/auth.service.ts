@@ -14,7 +14,7 @@ export class AuthService {
     }
 
     async registration(body){
-        const candidate = await Post.findOne({name: body.params.name});
+        const candidate = await Post.findOne({name: body.name});
         if (candidate) {
             throw new Error("A user with this email exists");
         }
@@ -31,8 +31,8 @@ export class AuthService {
     }
 
     async validateUser(body){
-        const user = await Post.findOne({name: body.params.name})
-        const passwordEquals = await bcrypt.compare(body.params.password, user.password)
+        const user = await Post.findOne({name: body.name})
+        const passwordEquals = await bcrypt.compare(body.password, user.password)
         if (user && passwordEquals) {
             return user;
         }

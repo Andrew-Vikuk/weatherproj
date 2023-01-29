@@ -25,7 +25,7 @@ let AuthService = class AuthService {
         return this.generateToken(user);
     }
     async registration(body) {
-        const candidate = await Post_1.default.findOne({ name: body.params.name });
+        const candidate = await Post_1.default.findOne({ name: body.name });
         if (candidate) {
             throw new Error("A user with this email exists");
         }
@@ -39,8 +39,8 @@ let AuthService = class AuthService {
         };
     }
     async validateUser(body) {
-        const user = await Post_1.default.findOne({ name: body.params.name });
-        const passwordEquals = await bcrypt.compare(body.params.password, user.password);
+        const user = await Post_1.default.findOne({ name: body.name });
+        const passwordEquals = await bcrypt.compare(body.password, user.password);
         if (user && passwordEquals) {
             return user;
         }
