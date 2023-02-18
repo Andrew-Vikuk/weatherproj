@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
 import HourlyForecast from "./components/HourlyForecast"
-import SECRET from "./SECRET"
 import Days from "./components/Days";
+import Login from './components/Login';
 
 
 function App() {
@@ -12,11 +12,12 @@ function App() {
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
+  const [infoLoaded, setInfoLoaded] = useState(false);
   const [listDays, setListDays] = useState([]);
 
   // API CONNECT & AXIOS RESPONSE
 
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=${SECRET.FORECAST_LENGTH}&units=metric&appid=${SECRET.API_KEY}`
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=60&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
@@ -31,6 +32,7 @@ function App() {
         }
         });
       })
+    setInfoLoaded(true);
     setLocation("");
     setListDays([]);
     }
@@ -73,18 +75,23 @@ function App() {
 
   return (
     !loading && (
+      
     <div className="App pt-14">
-      <div className="main">
-
-        {/* SEARCHING LOCATION */}
-
-        <input
+      <Login/>
+      {/* SEARCHING LOCATION */}
+      <div className="search-box flex justify-center">
+      <input
             className="border-2 border-grey-400 rounded-xl px-6 py-2"
             value={loсation}
             onChange={event => setLocation(event.target.value)}
             onKeyPress={searchLocation}
             placeholder='Enter Location'
             type="text" />
+      </div>
+      
+      <div className={`main ${infoLoaded ? 'loaded' : ''}`}>
+
+        
 
           {/* MAIN INFORMATION */}
 

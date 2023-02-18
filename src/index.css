@@ -53,8 +53,17 @@ input{
   text-align: center;
 }
 
-.main{
+
+.main {
   text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.main.loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .info_humidity:before{
@@ -85,6 +94,10 @@ input{
 
 /* Daily styles */
 
+.day_forcast {
+  margin-bottom: 30px;
+}
+
 .hourly_icon{
   height: 5rem;
   object-fit: cover;
@@ -98,6 +111,51 @@ input{
   object-fit: cover;
   margin-top: -10px;
 }
+
+/* LOGIN AND REGISTRATION */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: red;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.login-form,
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form input,
+.registration-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.login-form button,
+.registration-form button {
+  padding: 10px;
+  background: #333;
+  color:red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 
 /* RESPONSIVE PART */
 

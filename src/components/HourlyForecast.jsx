@@ -18,7 +18,7 @@ function HourlyForecast({info, day}) {
       }
 
   return (
-    <div className="main border-2 py-3 rounded-xl">
+    <div className="hourly_main border-2 py-3 rounded-xl">
         <p>{info.list[day].dt_txt.slice(11,16)}</p>
         {weatherIcon(info.list[day].weather[0].main)}
         <p>{info.list[day].main.temp.toFixed(0)} °C</p>
