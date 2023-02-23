@@ -1,62 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function Login() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
+function Login(props) {
+  const [showRegistration, setShowRegistration] = useState(false);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleRegistration = () => setShowRegistration(!showRegistration);
 
-  const toggleForm = () => {
-    setIsRegister(!isRegister);
+  const handleClose = () => {
+    props.togglePopup();
+    setShowRegistration(false);
+    console.log("close");
   };
 
   return (
     <div className="popup">
-      <button className="open-popup-btn" onClick={togglePopup}>
-        Open Popup
-      </button>
-      {isOpen && (
-        <div className="popup-content">
-          <button className="close-popup-btn" onClick={togglePopup}>
-            X
-          </button>
-          {isRegister ? (
-            <form>
-              <h2>Registration</h2>
-              <label>Email:</label>
-              <input type="email" name="email" required />
-              <label>Password:</label>
-              <input type="password" name="password" required />
-              <label>Repeat Password:</label>
-              <input type="password" name="password-repeat" required />
+      <div className="popup__inner">
+        <button className="popup__close" onClick={handleClose}>
+          X
+        </button>
+        <h2>{showRegistration ? "Registration" : "Login"}</h2>
+        <form>
+          {showRegistration ? (
+            <>
+              <label>
+                Email:
+                <input type="email" name="email" />
+              </label>
+              <label>
+                Password:
+                <input type="password" name="password" />
+              </label>
+              <label>
+                Repeat password:
+                <input type="password" name="repeat-password" />
+              </label>
               <button type="submit">Register</button>
               <p>
-                Already have an account?{' '}
-                <button type="button" onClick={toggleForm}>
+                Already have an account?{" "}
+                <a href="#" onClick={toggleRegistration}>
                   Login
-                </button>
+                </a>
               </p>
-            </form>
+            </>
           ) : (
-            <form>
-              <h2>Login</h2>
-              <label>Email:</label>
-              <input type="email" name="email" required />
-              <label>Password:</label>
-              <input type="password" name="password" required />
+            <>
+              <label>
+                Login:
+                <input type="text" name="login" />
+              </label>
+              <label>
+                Password:
+                <input type="password" name="password" />
+              </label>
               <button type="submit">Login</button>
               <p>
-                Don't have an account?{' '}
-                <button type="button" onClick={toggleForm}>
+                Don't have an account?{" "}
+                <a href="#" onClick={toggleRegistration}>
                   Register
-                </button>
+                </a>
               </p>
-            </form>
+            </>
           )}
-        </div>
-      )}
+        </form>
+      </div>
     </div>
   );
 }

@@ -14,6 +14,11 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [listDays, setListDays] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   // API CONNECT & AXIOS RESPONSE
 
@@ -77,7 +82,8 @@ function App() {
     !loading && (
       
     <div className="App pt-14">
-      <Login/>
+      <button onClick={togglePopup}>Show Popup</button> 
+      {showPopup && <Login togglePopup={togglePopup} />} 
       {/* SEARCHING LOCATION */}
       <div className="search-box flex justify-center">
       <input
