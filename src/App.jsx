@@ -1,12 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
-<<<<<<< HEAD
-import Days from "./components/Days"
-=======
 import HourlyForecast from "./components/HourlyForecast"
 import Days from "./components/Days";
 import Login from './components/Login';
->>>>>>> master
 
 
 function App() {
@@ -16,16 +12,6 @@ function App() {
   const [data, setData] = useState({});
   const [loсation, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
-<<<<<<< HEAD
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-
-
-
-  const urlposts = 'http://localhost:5000/users/posts';
-  //const urlcreate = 'http://localhost:5000/users/create';
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=7&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
-=======
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [listDays, setListDays] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -37,7 +23,6 @@ function App() {
   // API CONNECT & AXIOS RESPONSE
 
   const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loсation}&cnt=60&units=metric&appid=a3dc501f090463d7c22b1396b8dcf784`
->>>>>>> master
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
       axios.get(url).then((response) => {
@@ -52,16 +37,6 @@ function App() {
         }
         });
       })
-<<<<<<< HEAD
-      axios.get(urlposts).then((response) => {
-        console.log(response.data)
-      })
-    }
-  }
-
-  const project = (a) => {
-    switch(a) {
-=======
     setInfoLoaded(true);
     setLocation("");
     setListDays([]);
@@ -102,48 +77,9 @@ function App() {
     }, 1000);
   }
 
->>>>>>> master
 
-      case "Clouds": return <img src={require("./images/cloudy.png")} alt="" className="h-52 mx-auto"/>;
-      case "Snow": return <img src={require("./images/snow.png")} alt="" className="h-52 mx-auto"/>;
-      case "Clear": return <img src={require("./images/clear.png")} alt="" className="h-52 mx-auto"/>;
-      case "Rain": return <img src={require("./images/rain.png")} alt="" className="h-52 mx-auto"/>;
-
-      default: return <h1>404</h1>
-    }
-  }
-
-  const spinner = document.getElementById("spinner");
-  if (spinner) {
-    setTimeout(() => {
-      spinner.style.display = "none";
-      setLoading(false);
-    }, 1000);
-  }
-
- const getUserInfo = (e) => {
-  e.preventDefault();
-
-  // fetch(`http://localhost:5000/users/${login}/${password}`,
-  //   {
-  //       method: "POST"
-  //   })
-
-  //   .then(function(res){ console.log(res) })
-  const answer =  axios.post(`http://localhost:5000/auth/registration`,{
-          name: login,
-          password: password
-        });
-    console.log(`${answer}`);
-}
   return (
     !loading && (
-<<<<<<< HEAD
-    <div className="App pt-14">
-      <div className="main">
-        <input
-            className="search_input border-2 border-grey-400 rounded-xl px-6 py-2"
-=======
       
     <div className="App pt-14">
       <button onClick={togglePopup}>Show Popup</button> 
@@ -152,18 +88,11 @@ function App() {
       <div className="search-box flex justify-center">
       <input
             className="border-2 border-grey-400 rounded-xl px-6 py-2"
->>>>>>> master
             value={loсation}
             onChange={event => setLocation(event.target.value)}
             onKeyPress={searchLocation}
             placeholder='Enter Location'
             type="text" />
-<<<<<<< HEAD
-
-          {/* MAIN INFORMATION */}
-
-            {data.list ? project(data.list[0].weather[0].main) : null}
-=======
       </div>
       
       <div className={`main ${infoLoaded ? 'loaded' : ''}`}>
@@ -173,7 +102,6 @@ function App() {
           {/* MAIN INFORMATION */}
 
             {data.list ? weatherIcon(data.list[0].weather[0].main) : null}
->>>>>>> master
             {data.city ? <h2 className="mb-6">{data.city.name}</h2> : null}
             {data.list ? <h1>{data.list[0].main.temp.toFixed(0)} °C</h1> : null}
 
@@ -192,16 +120,6 @@ function App() {
             {data.list ? <p className="info_humidity info_card">{(data.list[0].main.humidity)} %</p> : null}
           </div>
 
-<<<<<<< HEAD
-          {/* WEATHER BY DAY BLOCK */}
-
-          <div className="day_forcast flex w-4/12 justify-between py-2 px-2 rounded-xl mx-auto align-middle">
-            {data.list ? <Days info={data} day="2"/>: null}
-            {data.list ? <Days info={data} day="3"/>: null}
-            {data.list ? <Days info={data} day="4"/>: null}
-            {data.list ? <Days info={data} day="5"/>: null}
-            {data.list ? <Days info={data} day="6"/>: null}
-=======
           {/* WEATHER FORECAST BY DAY BLOCK */}
 
           <div className="day_forcast flex max-w-xl justify-between py-2 px-2 rounded-xl mx-auto align-middle">
@@ -216,34 +134,11 @@ function App() {
             {mapInDays(listDays).map((dayNumber, index) => {
               return data.list ? <Days info={data} dayNum={dayNumber} dayName={index}/> : null
             })}
->>>>>>> master
           </div>
           
       </div>
-      <form action="" onSubmit={getUserInfo}>
-
-        <input 
-          type="text" 
-          placeholder="Login" 
-          id="login" 
-          onChange={event => setLogin(event.target.value)}
-          value={login}
-        />
-
-        <input 
-          type="pass"
-          placeholder="Password"
-          id="pass"
-          onChange={event => setPassword(event.target.value)}
-          value={password}
-        />
-
-        <input type="passconfirm" placeholder="Confirm" id="pass_rep"/>
-        <input type="submit"/>
-      </form>
     </div>
   ));
 }
-
 
 export default App;
