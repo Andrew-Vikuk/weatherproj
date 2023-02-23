@@ -17,8 +17,15 @@ body{
   background: linear-gradient(167.44deg, #621de2 0%, #7a3dca 47.38%, #8b41d1 100%);
   background-repeat: no-repeat;
   background-size: cover;
+<<<<<<< HEAD
   height: 100vh;
   color: white;
+=======
+  min-height: 100vh;
+  height: 100%;
+  color: white;
+  padding: 10px 0 60px 0;
+>>>>>>> master
   font-family: 'Outfit', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -28,6 +35,30 @@ body{
 
 h1{
   font-size: 72px;
+<<<<<<< HEAD
+}
+
+h2{
+  font-size: 46px;
+}
+
+h3{
+  font-size: 38px;
+}
+
+h4{
+  font-size: 34px;
+}
+
+p{
+  font-size: 22px;
+}
+
+input{
+  color: #08244F;
+  text-align: center;
+=======
+>>>>>>> master
 }
 
 h2{
@@ -51,10 +82,22 @@ input{
   text-align: center;
 }
 
-.main{
+<<<<<<< HEAD
+=======
+
+.main {
   text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
+.main.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+>>>>>>> master
 .info_humidity:before{
   content: url(./images/water.svg);
   position: absolute;
@@ -83,12 +126,131 @@ input{
 
 /* Daily styles */
 
+<<<<<<< HEAD
 .daily_icon{
+=======
+.day_forcast {
+  margin-bottom: 30px;
+}
+
+.hourly_icon{
+>>>>>>> master
   height: 5rem;
   object-fit: cover;
   transform: scale(1.08);
   margin-top: -16px;
 }
 
+<<<<<<< HEAD
+=======
+.daily_icon{
+  width: 40px;
+  height: 3.3rem;
+  object-fit: cover;
+  margin-top: -10px;
+}
+
+/* LOGIN AND REGISTRATION */
+
+.login-form,
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form input,
+.registration-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.login-form button,
+.registration-form button {
+  padding: 10px;
+  background: #333;
+  color:red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.popup__inner {
+  background-color: rgb(65, 65, 65);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.popup__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popup label {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.popup input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.popup button[type="submit"] {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* RESPONSIVE PART */
+
+@media screen and (max-width: 600px) {
+  .day_forcast {
+    overflow: scroll;
+    width: 400px!important;
+  }
+}
+
+>>>>>>> master
 
 
